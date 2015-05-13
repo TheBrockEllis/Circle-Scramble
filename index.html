@@ -48,8 +48,14 @@
 
 <SCRIPT>
 
-$(document).ready(function(){
+document.addEventListener("deviceready", onDeviceReady, false);
 
+$(document).ready(function(){
+    onDeviceReady();
+});
+
+function onDeviceReady(){
+ 
     function move(){
         $(".circle").each(function(index, value){
             var top = Math.floor(Math.random() * 101) + "%";
@@ -76,7 +82,7 @@ $(document).ready(function(){
         $("#number").text(score);
     });
     
-});
+};
 
 </SCRIPT>
 
