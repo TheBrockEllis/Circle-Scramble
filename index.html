@@ -1,0 +1,84 @@
+<HTML>
+<HEAD>
+    <SCRIPT src="http://code.jquery.com/jquery-latest.js"></SCRIPT>
+    <STYLE>
+        html {
+            max-height: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        .circle {
+            height: 200px;
+            width: 200px;
+            border-radius: 100px;
+            position: absolute;
+        }
+        
+        #blue {
+            background-color: blue;
+        }
+        
+        #red {
+            background-color: red;
+        }
+        
+        #score {
+            text-align: center;
+            width: 50%;
+            margin:0 auto;
+            font-size: 36px;
+            color: red;
+        }
+    </STYLE>
+</HEAD>
+<BODY>
+
+<div id="score">Score: <span id="number">0</span></div>
+
+<div class="circle" id="red"></div>
+<div class="circle" id="blue"></div>
+<div class="circle" id="blue"></div>
+
+<SCRIPT>
+
+$(document).ready(function(){
+
+    function move(){
+        $(".circle").each(function(index, value){
+            var top = Math.floor(Math.random() * 101) + "%";
+            var left = Math.floor(Math.random() * 101) + "%";
+            
+            $(value).css("top", top).css("left", left);
+        });
+    }
+
+    move();
+    setInterval(move, 1000);
+    
+    $(".circle").on("click touchend", function(){
+        var points;
+        
+        var id = $(this).attr("id"); 
+    
+        if(id == "red") points = 100;
+        else points = 10;
+        
+        var score = $("#number").text();
+        score = Number(score) + Number(points);
+                
+        $("#number").text(score);
+    });
+    
+});
+
+</SCRIPT>
+
+</BODY>
+</HTML>
